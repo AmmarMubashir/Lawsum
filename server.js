@@ -9,7 +9,8 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500",
+    // origin: "http://127.0.0.1:5500",
+    origin: "https://lawsum-frontend.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -125,7 +126,7 @@ app.post("/api/forgot-password", async (req, res) => {
     user.resetTokenExpiration = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    const resetLink = `http://127.0.0.1:5500/templates/resetpasswordpage.html?token=${token}`;
+    const resetLink = `https://lawsum-frontend.vercel.app/resetpasswordpage.html?token=${token}`;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
